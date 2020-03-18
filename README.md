@@ -17,23 +17,23 @@
 
 ## Helper scripts
 
-`rake_init.sh` - Create the DependencyStack for this environment
-`rake.sh` - Compile code and run unit tests
-`rake_dependencies.sh` - Write dependencies to .env.dependencies.environment
-`rake_compile.sh` Compile code
-`rake_spec.sh` - Run unit tests
-`rake_upload.sh` - Upload the CloudFormation artifacts
-`rake_apply.sh` - Deploy code
+- `rake_init.sh` - Create the DependencyStack for this environment
+- `rake.sh` - Compile code and run unit tests
+- `rake_dependencies.sh` - Write dependencies to .env.dependencies.environment
+- `rake_compile.sh` Compile code
+- `rake_spec.sh` - Run unit tests
+- `rake_upload.sh` - Upload the CloudFormation artifacts
+- `rake_apply.sh` - Deploy code
 
 ## Rake commands
 
-`rake` - Retrieve required outputs from DependencyStack, Compile the code into CloudFormation templates and run unit tests
-`rake init` - Deploy the DependencyStack in the AWS account
-`rake compile` - Compile the code into CloudFormation templates
-`rake spec` - Run unit tests
-`rake upload` - Upload the CloudFormation templates to s3
-`rake update` - Save required outputs from DependencyStack to .env.dependencies.<ENVIRONMENT>
-`rake apply` - Deploy the CloudFormation templates
+- `rake` - Retrieve required outputs from DependencyStack, Compile the code into CloudFormation templates and run unit tests
+- `rake init` - Deploy the DependencyStack in the AWS account
+- `rake compile` - Compile the code into CloudFormation templates
+- `rake spec` - Run unit tests
+- `rake upload` - Upload the CloudFormation templates to s3
+- `rake update` - Save required outputs from DependencyStack to .env.dependencies.<ENVIRONMENT>
+- `rake apply` - Deploy the CloudFormation templates
 
 ## Stack configuration
 
