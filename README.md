@@ -11,6 +11,12 @@
 
 ## Prerequisites
 
+- Execute the following commands:
+```
+mv .env.private.sample .env.private
+mv Gemfile.sample Gemfile
+mv Gemfile.lock.sample Gemfile.lock
+```
 - Edit .env.private and configure your AWS credentials, or export your AWS credentials.
 - Modify config.yaml and change 'mysubdomain.masterofcloud.com' to 'yourname.masterofcloud.com'
 - Type `rake init` to create the DependencyStack in your AWS account
