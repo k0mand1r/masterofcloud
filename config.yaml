@@ -2,8 +2,6 @@ environments:
   rspec:
     vpc_cidr: 192.168.0.0/16
     stack_name: rspec-devops
-    domain_name: "rspec.io"
-    no_subdomain: true
   development:
     vpc_cidr: 10.10.0.0/16
     stack_name: development-devops
