@@ -162,8 +162,9 @@ def create_applications
                  type: "AWS::ECS::Service" do |r|
           r.property(:service_name) { "#{environment}-masterofcloud-#{simple_name}" }
           r.property(:cluster) { :cluster.ref }
-          r.property(:role) { :service_role.ref }
           r.property(:desired_count) { min.to_i }
+          r.property(:health_check_grace_period_seconds) { 30 }
+          r.property(:role) { :service_role.ref }
           r.property(:task_definition) { :task_definition.ref }
           r.property(:load_balancers) do
             [
