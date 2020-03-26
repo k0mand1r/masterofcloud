@@ -37,7 +37,7 @@ end
 # Return the mandatory Stack parameters and add all defined ENV vars from config.yaml
 def parent_parameters(env_vars)
   params = {
-    "Vpc": :vpc_stack.ref("Outputs.Vpc"),
+    "Vpc": :vpc_stack.ref("Outputs.VpcId"),
     "Cluster": :ecs_stack.ref("Outputs.EcsCluster"),
     "Listener": :ecs_stack.ref("Outputs.EcsLoadBalancerListener"),
     "EcsServiceAutoScalingRoleArn": :ecs_stack.ref("Outputs.EcsAutoScalingRoleArn"),
