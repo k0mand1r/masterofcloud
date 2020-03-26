@@ -134,8 +134,14 @@ def create_applications
                   description: "ARN of ECS deployment failure Lambda",
                   type: "String"
 
+        variable :min_override,
+                 value: app_config[environment].nil? ? "" : app_config[environment]["min"].to_s
+
         variable :min,
-                 value: app_config["min"].to_s
+                 value: min_override.empty? ? app_config["min"].to_s : min_override
+
+        variable :max_override,
+                 value: app_config[environment].nil? ? "" : app_config[environment]["max"].to_s
 
         variable :max,
                  value: app_config["max"].to_s
@@ -143,8 +149,11 @@ def create_applications
         variable :container_port,
                  value: app_config["container_port"].to_s
 
+        variable :memory_override,
+                 value: app_config[environment].nil? ? "" : app_config[environment]["mem"].to_s
+
         variable :memory,
-                 value: app_config["mem"].to_s
+                 value: memory_override.empty? ? app_config["mem"].to_s : memory_override
 
         variable :image,
                  value: app_config["image"]
@@ -162,9 +171,9 @@ def create_applications
                  type: "AWS::ECS::Service" do |r|
           r.property(:service_name) { "#{environment}-masterofcloud-#{simple_name}" }
           r.property(:cluster) { :cluster.ref }
-          r.property(:desired_count) { min.to_i }
-          r.property(:health_check_grace_period_seconds) { 30 }
           r.property(:role) { :service_role.ref }
+          r.property(:health_check_grace_period_seconds) { 30 }
+          r.property(:desired_count) { min.to_i }
           r.property(:task_definition) { :task_definition.ref }
           r.property(:load_balancers) do
             [
