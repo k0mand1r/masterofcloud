@@ -3,7 +3,7 @@ require "active_support/concern"
 require_relative "../spec_helper"
 require_relative "../../lib/main.rb"
 
-module ParentSpec
+module LambdaSpec
   extend ActiveSupport::Concern
   include Rubycfn
 
@@ -11,15 +11,15 @@ module ParentSpec
     description "Infra Stack RSpec"
     include Concerns::GlobalVariables
     include Concerns::SharedMethods
-    include InfraStack::Parent
+    include LambdaStack::LambdaFunction
   end
 end
 
-ParentSpecCfn = include ParentSpec
+LambdaSpecCfn = include LambdaSpec
 
-describe ParentSpec do
-  RspecParentSpec = ParentSpecCfn.render_template
-  let(:template) { JSON.parse(RspecParentSpec) }
+describe LambdaSpec do
+  RspecLambdaSpec = LambdaSpecCfn.render_template
+  let(:template) { JSON.parse(RspecLambdaSpec) }
 
   context "Renders template" do
     subject { template }
@@ -28,16 +28,6 @@ describe ParentSpec do
     context "Has Required Resources" do
       let(:resources) { template["Resources"] }
       subject { resources }
-
-      it { should have_key "VpcStack" }
-
-      if ENV["ASSIGNMENT_FOUR"] == "true"
-        it { should_not have_key "AcmStack" }
-        it { should_not have_key "EcsStack" }
-        it { should_not have_key "OneStack" }
-        it { should_not have_key "TwoStack" }
-        it { should have_key "LambdaStack" }
-      end
     end
   end
 end
