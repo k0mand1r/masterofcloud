@@ -6,9 +6,10 @@ import urllib3
 
 def lambda_handler(event, context):
     HOOK_URL=os.getenv('SLACK_POSTHOOK_URL')
+    DOMAIN_NAME=os.getenv('MY_DOMAIN_NAME')
     slack_message = {
         "channel": "masterofcloud",
-        "text": ":fiesta_parrot: Integration test. (Working on next assignment ;)) :fiesta_parrot:",
+        "text": ":fiesta_parrot: " + DOMAIN_NAME + " completed the assignment :fiesta_parrot:",
         "icon_emoji": ":rocket:"
     }
     http = urllib3.PoolManager()
