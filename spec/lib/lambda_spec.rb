@@ -86,6 +86,36 @@ if ENV["ASSIGNMENT_FOUR"] == "true"
               expect(%w(python3.7 python3.8)).to include(*[runtime])
             end
           end
+
+          context "API Gateway has slackposter configuration" do
+            let(:events) { properties["Events"] }
+            subject { events }
+
+            it { should have_key "slackposter" }
+
+            context "slackposter has a Type and Properties" do
+              let(:slackposter) { events["slackposter"] }
+              subject { slackposter }
+
+              it { should have_key "Type" }
+              it { should have_key "Properties" }
+
+              context "slackposter Properties have a Path and a Method" do
+                let(:slackposter_properties) { slackposter["Properties"] }
+                subject { slackposter_properties }
+
+                it { should have_key "Path" }
+                it { should have_key "Method" }
+
+                context "slackposter Method is configured for POST requests" do
+                  let(:method) { slackposter_properties["Method"] }
+                  subject { method }
+
+                  it { should eq "post" }
+                end
+              end
+            end
+          end
         end
       end
     end
