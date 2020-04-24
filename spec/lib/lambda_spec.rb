@@ -87,7 +87,7 @@ if ENV["ASSIGNMENT_FOUR"] == "true"
             end
           end
 
-          context "API Gateway has slackposter configuration" do
+          context "API Gateway has slackposter Logical ID" do
             let(:events) { properties["Events"] }
             subject { events }
 
